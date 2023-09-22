@@ -1,11 +1,10 @@
-import * as LitJsSdk from "@lit-protocol/lit-node-client";
-import { ProviderType, AuthMethodType } from "@lit-protocol/constants";
+import { LitNodeClient } from '@lit-protocol/lit-node-client';
 import {
   LitAuthClient,
   GoogleProvider,
   WebAuthnProvider,
 } from "@lit-protocol/lit-auth-client";
-// import {LitNodeClient} from "@lit-protocol/types"
+import { AuthMethodType, ProviderType } from "@lit-protocol/constants";
 import {
   AuthCallbackParams,
   AuthMethod,
@@ -16,7 +15,7 @@ import {
 
 export const ORIGIN = "http://localhost:3000";
 
-export const litNodeClient: LitJsSdk.LitNodeClient = new LitNodeClient({
+export const litNodeClient: LitNodeClient = new LitNodeClient({
   alertWhenUnauthorized: false,
   litNetwork: "serrano",
   debug: false,
