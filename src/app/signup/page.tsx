@@ -1,4 +1,4 @@
-import { ORIGIN } from "@/src/utils/lit";
+import { ORIGIN } from "../../utils/lit";
 import React from "react";
 
 const signup = () => {
