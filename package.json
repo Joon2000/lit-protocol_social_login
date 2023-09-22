@@ -9,6 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@lit-protocol/constants": "^2.2.54",
+    "@lit-protocol/lit-auth-client": "^2.2.54",
+    "@lit-protocol/lit-node-client": "^2.2.54",
+    "@lit-protocol/types": "^2.2.54",
     "@types/node": "20.6.3",
     "@types/react": "18.2.22",
     "@types/react-dom": "18.2.7",
