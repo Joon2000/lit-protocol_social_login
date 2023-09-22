@@ -1,4 +1,4 @@
-import { LitNodeClient } from '@lit-protocol/lit-node-client';
+import { LitNodeClient } from "@lit-protocol/lit-node-client";
 import {
   LitAuthClient,
   GoogleProvider,
@@ -105,6 +105,15 @@ export async function updateSessionSigs(
 ): Promise<SessionSigs> {
   const sessionSigs = await litNodeClient.getSessionSigs(params);
   return sessionSigs;
+}
+
+/**
+ * Fetch PKPs associated with given auth method
+ */
+export async function getPKPs(authMethod: AuthMethod): Promise<IRelayPKP[]> {
+  const provider = getProviderByAuthMethod(authMethod);
+  const allPKPs = await provider!.fetchPKPsThroughRelayer(authMethod);
+  return allPKPs;
 }
 
 /**
