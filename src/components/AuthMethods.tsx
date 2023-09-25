@@ -15,7 +15,12 @@ const AuthMethods = ({ handleGoogleLogin }: AuthMethodProps) => {
             onClick={handleGoogleLogin}
           >
             <div className="btn__icon">
-              <Image src="/google.png" alt="Google logo" fill={true} />
+              <Image
+                width={50}
+                height={50}
+                src="/google.png"
+                alt="Google logo"
+              />
             </div>
           </button>
         </div>
