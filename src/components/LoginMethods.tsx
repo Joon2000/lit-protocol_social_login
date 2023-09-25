@@ -1,4 +1,3 @@
-import { useState } from "react";
 import AuthMethods from "./AuthMethods";
 
 interface LoginProps {
