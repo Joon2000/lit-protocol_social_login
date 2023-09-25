@@ -8,8 +8,9 @@ import useAccounts from "@/hooks/useAccounts";
 import useAuthenticate from "@/hooks/useAuthenticate";
 import useSession from "@/hooks/useSession";
 import { ORIGIN, signInWithGoogle } from "@/utils/lit";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import Dashboard from "@/components/Dashboard";
 
 export default function LoginView() {
   const redirectUri = ORIGIN + "/login";
@@ -42,13 +43,12 @@ export default function LoginView() {
   }
 
   function goToSignUp() {
-    router.push("/");
+    router.push("/signup");
   }
 
   useEffect(() => {
     // If user is authenticated, fetch accounts
     if (authMethod) {
-      router.replace(window.location.pathname, undefined, { shallow: true });
       fetchAccounts(authMethod);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -59,7 +59,7 @@ export default function LoginView() {
     if (authMethod && currentAccount) {
       initSession(authMethod, currentAccount);
     }
-  });
+  }, [authMethod, currentAccount, initSession]);
 
   if (authLoading) {
     return (
@@ -72,6 +72,13 @@ export default function LoginView() {
   }
   if (sessionLoading) {
     return <Loading copy={"Securing your session..."} error={error} />;
+  }
+
+  // If user is authenticated and has selected an account, initialize session
+  if (currentAccount && sessionSigs) {
+    return (
+      <Dashboard currentAccount={currentAccount} sessionSigs={sessionSigs} />
+    );
   }
 
   // If user is authenticated and has selected an account, initialize session
