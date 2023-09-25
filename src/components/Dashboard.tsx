@@ -2,8 +2,8 @@ import { IRelayPKP, SessionSigs } from "@lit-protocol/types";
 import { useState } from "react";
 import { PKPEthersWallet } from "@lit-protocol/pkp-ethers";
 import { ethers } from "ethers";
-import { useRouter } from "next/router";
-import { useDisconnect } from "wagmi";
+import { useRouter } from "next/navigation";
+// import { useDisconnect } from "wagmi";
 
 interface DashBoardProps {
   currentAccount: IRelayPKP;
@@ -21,7 +21,7 @@ export default function Dashboard({
   const [loading, setLoading] = useState<Boolean>(false);
   const [error, setError] = useState<Error>();
 
-  const { disconnectAsync } = useDisconnect();
+  // const { disconnectAsync } = useDisconnect();
   const router = useRouter();
 
   /**
@@ -57,11 +57,12 @@ export default function Dashboard({
   }
 
   async function handleLogout() {
-    try {
-      await disconnectAsync();
-    } catch (err) {}
-    localStorage.removeItem("lit-wallet-sig");
-    router.reload();
+    // try {
+    //   await disconnectAsync();
+    // } catch (err) {}
+    // localStorage.removeItem("lit-wallet-sig");
+    // router.replace("/");
+    console.log("log out");
   }
 
   return (
