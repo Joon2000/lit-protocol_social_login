@@ -4,7 +4,7 @@ import useAuthenticate from "@/hooks/useAuthenticate";
 import useAccounts from "@/hooks/useAccounts";
 import { ORIGIN, signInWithGoogle } from "../../utils/lit";
 import { useEffect } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import useSession from "@/hooks/useSession";
 import Loading from "@/components/Loading";
 import Dashboard from "@/components/Dashboard";
@@ -49,7 +49,6 @@ const SignUp = () => {
   useEffect(() => {
     // If user is authenticated, create an account
     if (authMethod) {
-      router.replace(window.location.pathname, undefined, { shallow: true });
       createAccount(authMethod);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
