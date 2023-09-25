@@ -1,3 +1,5 @@
+"use client";
+
 import AccountSelection from "@/components/AccountSelection";
 import CreateAccounts from "@/components/CreateAccounts";
 import LoginMethods from "@/components/LoginMethods";

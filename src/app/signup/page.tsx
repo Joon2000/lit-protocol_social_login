@@ -1,3 +1,5 @@
+"use client";
+
 import useAuthenticate from "@/hooks/useAuthenticate";
 import useAccounts from "@/hooks/useAccounts";
 import { ORIGIN, signInWithGoogle } from "../../utils/lit";
