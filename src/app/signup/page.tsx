@@ -11,7 +11,7 @@ import Dashboard from "@/components/Dashboard";
 import SingUpMethods from "@/components/SignUpMethods";
 
 const SignUp = () => {
-  const redirectUri = ORIGIN;
+  const redirectUri = ORIGIN + "/signup";
 
   const {
     authMethod,
