@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="flex justify-center  bg-white">
-      <body className="w-2/5  bg-cyan-50 h-screen py-2 px-1">{children}</body>
+      <body className="w-66 bg-cyan-50 h-screen py-4 px-2">{children}</body>
     </html>
   );
 }
