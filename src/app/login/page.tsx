@@ -11,6 +11,7 @@ import { ORIGIN, signInWithGoogle } from "@/utils/lit";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Dashboard from "@/components/Dashboard";
+import { useIsMounted } from "@/hooks/useIsMounted";
 
 export default function LoginView() {
   const redirectUri = ORIGIN + "/login";
@@ -35,6 +36,7 @@ export default function LoginView() {
     error: sessionError,
   } = useSession();
   const router = useRouter();
+  const mounted = useIsMounted();
 
   const error = authError || accountsError || sessionError;
 
@@ -99,10 +101,13 @@ export default function LoginView() {
 
   // If user is not authenticated, show login methods
   return (
-    <LoginMethods
-      handleGoogleLogin={handleGoogleLogin}
-      signUp={goToSignUp}
-      error={error}
-    />
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    mounted && (
+      <LoginMethods
+        handleGoogleLogin={handleGoogleLogin}
+        signUp={goToSignUp}
+        error={error}
+      />
+    )
   );
 }

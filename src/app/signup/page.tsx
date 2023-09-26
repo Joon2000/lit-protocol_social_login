@@ -9,6 +9,7 @@ import useSession from "@/hooks/useSession";
 import Loading from "@/components/Loading";
 import Dashboard from "@/components/Dashboard";
 import SingUpMethods from "@/components/SignUpMethods";
+import { useIsMounted } from "@/hooks/useIsMounted";
 
 const SignUp = () => {
   const redirectUri = ORIGIN + "/signup";
@@ -38,6 +39,7 @@ const SignUp = () => {
   } = useSession();
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const router = useRouter();
+  const mounted = useIsMounted();
 
   const error = authError || accountsError || sessionError;
 
@@ -77,11 +79,13 @@ const SignUp = () => {
     );
   } else {
     return (
-      <SingUpMethods
-        handleGoogleLogin={handleGoogleLogin}
-        goToLogin={() => router.push("/login")}
-        error={error}
-      />
+      mounted && (
+        <SingUpMethods
+          handleGoogleLogin={handleGoogleLogin}
+          goToLogin={() => router.push("/login")}
+          error={error}
+        />
+      )
     );
   }
 };
