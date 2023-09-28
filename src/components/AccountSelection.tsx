@@ -30,42 +30,41 @@ export default function AccountSelection({
             <p>{error.message}</p>
           </div>
         )}
-        <h1>Choose your account</h1>
-        <p>Continue with one of your accounts</p>
+        <h1 className="text-2xl font-bold">Choose your account</h1>
+        <p className="text-base font-semibold mt-2 leading-4 mb-3">
+          Continue with one of your accounts
+        </p>
         <form onSubmit={handleSubmit} className="form">
           <RadioGroup.Root
-            className="accounts-wrapper"
+            className="flex flex-col gap-2.5"
             defaultValue="0"
             onValueChange={setSelectedValue}
-            aria-label="View accounts"
+            aria-label="View density"
           >
             {accounts.map((account, index) => (
-              <div
-                key={`account-${index}`}
-                className={`account-item ${
-                  selectedValue === index.toString() && "account-item--selected"
-                }`}
-              >
+              <div key={index}>
                 <RadioGroup.Item
-                  className="account-item__radio"
                   value={index.toString()}
-                  id={account.ethAddress}
+                  className="bg-white w-[10px] h-[10px] rounded-full border-solid border-[1px] border-gray-300"
                 >
-                  {" "}
-                  <RadioGroup.Indicator className="account-item__indicator" />
+                  {index.toString() === selectedValue && (
+                    <RadioGroup.Indicator className="flex items-center justify-center w-full h-full relative after:content-[''] after:block after:w-[5px] after:h-[5px] after:rounded-[50%] after:bg-black " />
+                  )}
                 </RadioGroup.Item>
-                <label
-                  className="account-item__label"
-                  htmlFor={account.ethAddress}
-                >
-                  {account.ethAddress.toLowerCase()}
+                <label className="ml-1.5">
+                  {account.ethAddress.toLowerCase().slice(0, 20)}...
                 </label>
               </div>
             ))}
           </RadioGroup.Root>
-          <button type="submit" className="btn btn-primary">
-            Continue
-          </button>
+          <div className="button-container flex justify-center">
+            <button
+              type="submit"
+              className="btn btn-primary border-solid border-2 border-lime-300 rounded-md px-1 mt-5"
+            >
+              <div className="text-xs font-semibold ">Continue</div>
+            </button>
+          </div>
         </form>
       </div>
     </div>

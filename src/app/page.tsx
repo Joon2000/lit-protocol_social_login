@@ -11,10 +11,9 @@ export default function Home() {
 
   return (
     <main className="main-container flex flex-col justify-center gap-y-10">
-      <div className="text-base items-center">
-        <p>Hello</p>
-        <p>Mint a PKP</p>
-        <p>using Google authorization</p>
+      <div className=" items-center  font-bold">
+        <p className="text-xl">Social Login</p>
+        <p className="text-base">using Google Authorization</p>
       </div>
       <Image
         src="/네즈코3.gif"
@@ -25,7 +24,7 @@ export default function Home() {
       />
       <button
         onClick={handleClick}
-        className="text-sm items-center border-solid border-black rounded text-blue-500 w-14 m-auto"
+        className="text-xs items-center border-solid border-2 rounded-md border-sky-300 text-blue-500 w-16 m-auto"
       >
         click here
       </button>

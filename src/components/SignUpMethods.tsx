@@ -1,4 +1,4 @@
-import { AUTH_METHOD_TYPE_IDS } from "@lit-protocol/constants";
+/* eslint-disable react/no-unescaped-entities */
 import AuthMethods from "./AuthMethods";
 
 interface SignUpProps {
@@ -21,17 +21,21 @@ export default function SingUpMethods({
           </div>
         )}
         <>
-          <h1>Get started</h1>
-          <p>
+          <h1 className="text-xl font-semibold">Get started</h1>
+          <p className="text-sm mt-2">
             Create a wallet that is secured by accounts you already have.
-            Lit-powered MPC wallets, you won`&apos;`t have to worry about seed
-            phrases or browser extensions.
+            Lit-powered MPC wallets, you won't have to worry about seed phrases
+            or browser extensions.
           </p>
           <AuthMethods handleGoogleLogin={handleGoogleLogin} />
-          <div className="buttons-container">
-            <button type="button" className="btn btn-link" onClick={goToLogin}>
-              Have an account? Log in
-            </button>
+          <div className="login-container flex flex-row mt-10">
+            <div className="text-sm">Have an account?</div>
+            <div
+              onClick={goToLogin}
+              className="ml-2 text-sky-300 text-sm cursor-pointer italic"
+            >
+              Log in
+            </div>
           </div>
         </>
       </div>

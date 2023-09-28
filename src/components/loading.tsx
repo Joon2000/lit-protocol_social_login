@@ -8,7 +8,7 @@ interface LoadingProps {
 export default function Loading({ copy, error }: LoadingProps) {
   return (
     <div className="container">
-      <div className="wrapper">
+      <div className="wrapper mt-10">
         {error && (
           <div className="alert alert--error">
             <p>{error.message}</p>
@@ -24,7 +24,7 @@ export default function Loading({ copy, error }: LoadingProps) {
               className="m-auto"
             />
           </div>
-          <p>{copy}</p>
+          <p className="text-center mt-5">{copy}</p>
         </div>
       </div>
     </div>

@@ -3,7 +3,6 @@ import { useState } from "react";
 import { PKPEthersWallet } from "@lit-protocol/pkp-ethers";
 import { ethers } from "ethers";
 import { useRouter } from "next/navigation";
-// import { useDisconnect } from "wagmi";
 
 interface DashBoardProps {
   currentAccount: IRelayPKP;
@@ -20,8 +19,8 @@ export default function Dashboard({
   const [verified, setVerified] = useState<boolean>(false);
   const [loading, setLoading] = useState<Boolean>(false);
   const [error, setError] = useState<Error>();
+  const [showFullAddress, setShowFullAddress] = useState<boolean>(false);
 
-  // const { disconnectAsync } = useDisconnect();
   const router = useRouter();
 
   /**
@@ -57,45 +56,77 @@ export default function Dashboard({
   }
 
   async function handleLogout() {
-    // try {
-    //   await disconnectAsync();
-    // } catch (err) {}
-    // localStorage.removeItem("lit-wallet-sig");
-    // router.replace("/");
+    localStorage.removeItem("lit-wallet-sig");
+    router.replace("/");
     console.log("log out");
   }
 
   return (
     <div className="container">
-      <div className="logout-container">
-        <button className="btn btn-link" onClick={handleLogout}>
+      <div className="logout-container text-right">
+        <button
+          className="btn btn-link text-[1px] italic"
+          onClick={handleLogout}
+        >
           Logout
         </button>
       </div>
-      <h1>Ready for the open web</h1>
+      <h1 className="text-base font-semibold">Ready for </h1>
+      <h1 className="text-xl font-semibold">the open web</h1>
       <div className="details-card">
-        <p>My address: {currentAccount.ethAddress.toLowerCase()}</p>
+        <p className="text-sm mt-5">
+          My address: <br />
+          <p
+            className={`text-center cursor-pointer ${
+              showFullAddress ? "text-[1px]" : ""
+            }`}
+            onClick={() => setShowFullAddress((prev) => !prev)}
+          >
+            {showFullAddress
+              ? currentAccount.ethAddress.toLowerCase()
+              : currentAccount.ethAddress.toLowerCase().slice(0, 20) + "..."}
+          </p>
+        </p>
       </div>
-      <div className="divider"></div>
-      <div className="message-card">
-        <p>Test out your wallet by signing this message:</p>
-        <button
-          onClick={signMessageWithPKP}
-          disabled={loading as boolean}
-          className={`btn ${
-            signature ? (verified ? "btn--success" : "btn--error") : ""
-          } ${loading && "btn--loading"}`}
-        >
-          {signature ? (
-            verified ? (
-              <span>Verified ✓</span>
+      <div className="message-card mt-5">
+        <p className=" text-sm">
+          Test out your wallet by signing this message:
+        </p>
+        <form className="flex justify-center">
+          <input
+            className="mt-2 border-solid border-gray-300 border-[1px] rounded-sm focus: outline-gray-500  w-4/5 h-5 p-1 text-[2px] placeholder:text-gray-400"
+            type="text"
+            placeholder="Free the web!"
+            name="message"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+          />
+        </form>
+        <div className="text-center mt-2">
+          <button
+            onClick={signMessageWithPKP}
+            disabled={loading as boolean}
+            className={`btn text-xs border-solid border-[2px] rounded-md w-20 ${
+              signature
+                ? verified
+                  ? "btn--success  border-emerald-500"
+                  : "btn--error border-red-500"
+                : "border-cyan-300"
+            } ${loading && "btn--loading border-lime-200 cursor-wait"}`}
+          >
+            {signature ? (
+              verified ? (
+                <span>Verified ✓</span>
+              ) : (
+                <span>Failed x</span>
+              )
+            ) : loading ? (
+              <span>Loading...</span>
             ) : (
-              <span>Failed x</span>
-            )
-          ) : (
-            <span>Sign message</span>
-          )}
-        </button>
+              <span>Sign</span>
+            )}
+          </button>
+        </div>
       </div>
     </div>
   );

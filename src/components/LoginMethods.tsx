@@ -20,13 +20,19 @@ export default function LoginMethods({
           </div>
         )}
         <>
-          <h1>Welcome back</h1>
+          <h1 className="text-2xl font-bold mb-8">Welcome back!</h1>
           <p>Access your lit wallet.</p>
           <AuthMethods handleGoogleLogin={handleGoogleLogin} />
-          <div className="buttons-container">
-            <button type="button" className="btn btn--link" onClick={signUp}>
-              Need an account? Sign up
-            </button>
+          <div className="sign-up__container flex flex-row mt-10">
+            <p className="text-sm">Need an account? </p>
+            <div className="buttons-container">
+              <div
+                className="ml-2 text-sky-300 text-sm cursor-pointer italic"
+                onClick={signUp}
+              >
+                Sign up
+              </div>
+            </div>
           </div>
         </>
       </div>
